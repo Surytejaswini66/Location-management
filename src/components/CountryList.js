@@ -4,12 +4,10 @@ import "../styles/CountryList.css";
 
 const CountryList = ({ countries, setCountries }) => {
   const [expandedIndex, setExpandedIndex] = useState(null);
-  const [isInputExpanded, setInputExpanded] = useState(false);  // New state for input box toggle
 
   const toggleExpand = (index) => {
     setExpandedIndex(expandedIndex === index ? null : index);
   };
-
 
   const editCountry = (index) => {
     const newName = prompt("Enter new country name:", countries[index].name);
@@ -37,23 +35,6 @@ const CountryList = ({ countries, setCountries }) => {
               {expandedIndex === index ? "v" : "^"}
             </button>
             <h2>{country.name}</h2>
-          </div>
-
-          {/* Input Box with toggle button on the left side */}
-          <div className="input-toggle">
-    
-            {isInputExpanded && (
-              <input
-                type="text"
-                placeholder="Enter Country name"
-                value={country.name}
-                onChange={(e) => {
-                  const updatedCountries = [...countries];
-                  updatedCountries[index].name = e.target.value;
-                  setCountries(updatedCountries);
-                }}
-              />
-            )}
           </div>
 
           {/* Country Content */}
