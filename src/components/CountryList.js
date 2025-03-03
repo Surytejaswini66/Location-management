@@ -10,9 +10,6 @@ const CountryList = ({ countries, setCountries }) => {
     setExpandedIndex(expandedIndex === index ? null : index);
   };
 
-  const toggleInputExpand = () => {
-    setInputExpanded(!isInputExpanded);  // Toggle the input box visibility
-  };
 
   const editCountry = (index) => {
     const newName = prompt("Enter new country name:", countries[index].name);
