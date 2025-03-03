@@ -1,70 +1,146 @@
-# Getting Started with Create React App
+# Country, State, and City Management Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Overview
 
-## Available Scripts
+The **Country, State, and City Management** application is a ReactJS project that allows users to add, edit, and delete countries, states, and cities in a hierarchical structure. This project doesn't rely on external libraries or npm packages.
 
-In the project directory, you can run:
+### Core Requirements:
 
-### `npm start`
+- **Country Management**: Add, Edit, and Delete countries.
+- **State Management**: Add, Edit, and Delete states for a specific country.
+- **City Management**: Add, Edit, and Delete cities within a specific state.
+- **Confirmation Dialogs**: Display confirmation alerts before performing delete or update actions.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Functional Requirements
 
-### `npm test`
+### 1. **Country Management**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Add a Country**: The user can add a new country with a button trigger, allowing countries to be added without any states initially.
+- **Edit a Country**: Users can edit the name of an existing country. A confirmation dialog will appear before updating.
+- **Delete a Country**: Users can delete a country and all its associated states and cities. A confirmation dialog will appear before deletion.
 
-### `npm run build`
+### 2. **State Management**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Add a State**: States can be added to specific countries. Users can either add them immediately or via an "edit" flow.
+- **Edit a State**: Users can edit state names with a confirmation dialog before updating.
+- **Delete a State**: Users can delete states and their associated cities, with a confirmation dialog before deletion.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 3. **City Management**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Add a City**: Cities can be added under a specific state, either during the state creation or later via an "edit" flow.
+- **Delete a City**: Users can delete cities under a specific state, with a confirmation dialog before deletion.
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## User Interface (UI) Design
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 1. **Main Screen**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Button to add a new country.
+- List of countries with options to:
+  - Edit the country name.
+  - Delete the country.
+  - View and manage states for the country.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 2. **State Management Screen**
 
-## Learn More
+- For each country, a section with options to:
+  - Add, Edit, and Delete states (with confirmation).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 3. **City Management Screen**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- For each state, a section with options to:
+  - Add and Delete cities (with confirmation).
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Component Breakdown
 
-### Analyzing the Bundle Size
+### 1. **App.js**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Manages overall state for countries, states, and cities.
+- Handles the logic for adding, updating, and deleting countries.
+- Passes data and functions down to child components for state and city management.
 
-### Making a Progressive Web App
+### 2. **CountryList.js**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- Displays the list of countries.
+- Allows users to add, edit, and delete countries.
+- Displays the states associated with each country and allows management of those states.
 
-### Advanced Configuration
+### 3. **StateList.js**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- Displays the list of states for a specific country.
+- Allows users to add, edit, and delete states.
+- Provides links to manage cities within each state.
 
-### Deployment
+### 4. **CityList.js**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- Displays the list of cities for a specific state.
+- Allows users to add or delete cities.
+- Shows confirmation dialogs before deletion.
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Business Logic
+
+### Adding New Entities:
+
+- Users can add new countries, states, or cities via a prompt or form-based UI.
+- Once added, the entity is incorporated into the data structure and the UI updates.
+
+### Editing Existing Entities:
+
+- Users can edit the name of any entity (country, state, or city).
+- A confirmation dialog will appear before the update is executed, and the UI will reflect the change.
+
+### Deleting Entities:
+
+- A confirmation dialog is shown before deleting any entity.
+- If confirmed, the entity is removed from the data structure, and any related states or cities are also removed.
+
+---
+
+## Implementation Details
+
+### Technologies Used:
+
+- **ReactJS**: For building the component-based UI.
+- **JavaScript (ES6)**: For state management, event handling, and data manipulation.
+
+### Development Flow:
+
+1. Set up React App using `create-react-app`.
+2. Develop components for countries, states, and cities.
+3. Manage state using React’s `useState` hook.
+4. Pass data and functions between components using props.
+5. Use prompt and confirm dialogs for user interaction.
+
+---
+
+## Testing and Validation
+
+### 1. **Functional Testing**
+
+- Ensure that adding, editing, and deleting operations work as expected.
+- Verify that confirmation dialogs appear before performing critical actions like delete and update.
+
+### 2. **UI Testing**
+
+- Ensure UI updates after any add, edit, or delete operation.
+- Verify that the hierarchical structure (Country → State → City) is properly displayed and managed.
+
+---
+
+## Conclusion
+
+This application allows users to manage countries, states, and cities in a structured manner. It includes basic functionalities like adding, editing, and deleting, with built-in confirmation dialogs to prevent accidental actions. The flow is simple, intuitive, and scalable.
+
+---
+
+## License
+
+MIT License  
+(See LICENSE file)
